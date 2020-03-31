@@ -1,0 +1,379 @@
+[
+    {
+        "id": "5751c0a7.58f7f",
+        "type": "tab",
+        "label": "UI Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c26086fc.daea48",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "cluster internal mqtt",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "54b74482.dc89dc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Tank",
+        "tab": "c063e9b3.fa1be8",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "c063e9b3.fa1be8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Brew Process",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8ebf4474.c66448",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "cdef9d2e.ba2ed",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "54b74482.dc89dc",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "513c0300.d8367c",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "54b74482.dc89dc",
+        "order": 5,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "dd5504f3.cbc618",
+        "type": "mqtt in",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "topic": "tank/temp",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "c26086fc.daea48",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "d06510b4.f2be9"
+            ]
+        ]
+    },
+    {
+        "id": "d06510b4.f2be9",
+        "type": "function",
+        "z": "5751c0a7.58f7f",
+        "name": "format",
+        "func": "msg.payload = parseFloat(msg.payload).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "3f7fd665.60093a",
+                "4038f388.5ff60c"
+            ]
+        ]
+    },
+    {
+        "id": "3f7fd665.60093a",
+        "type": "ui_gauge",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "group": "54b74482.dc89dc",
+        "order": 1,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "degrees F",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "70",
+        "seg2": "120",
+        "x": 530,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d6d54a73.c920f8",
+        "type": "mqtt in",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "topic": "tank/heat",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "c26086fc.daea48",
+        "x": 100,
+        "y": 460,
+        "wires": [
+            [
+                "1a0983e8.2ccc9c"
+            ]
+        ]
+    },
+    {
+        "id": "1a0983e8.2ccc9c",
+        "type": "ui_gauge",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "group": "54b74482.dc89dc",
+        "order": 2,
+        "width": 6,
+        "height": 5,
+        "gtype": "donut",
+        "title": "Heat",
+        "label": "watts",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "2000",
+        "colors": [
+            "#ebd200",
+            "#f2a000",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 530,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a11f021d.5b156",
+        "type": "comment",
+        "z": "5751c0a7.58f7f",
+        "name": "This flow wires the UI to sensor, actuator and controller setpoint",
+        "info": "",
+        "x": 250,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f7a030f0.eae8a",
+        "type": "ui_numeric",
+        "z": "5751c0a7.58f7f",
+        "name": "setpoint",
+        "label": "Setpoint",
+        "tooltip": "setpoint",
+        "group": "54b74482.dc89dc",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "step": 1,
+        "x": 280,
+        "y": 560,
+        "wires": [
+            [
+                "726b3f4a.5ee97"
+            ]
+        ]
+    },
+    {
+        "id": "471c6e86.f24d9",
+        "type": "inject",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 560,
+        "wires": [
+            [
+                "f7a030f0.eae8a"
+            ]
+        ]
+    },
+    {
+        "id": "726b3f4a.5ee97",
+        "type": "mqtt out",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "topic": "controller/sp",
+        "qos": "2",
+        "retain": "true",
+        "broker": "c26086fc.daea48",
+        "x": 550,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "4038f388.5ff60c",
+        "type": "ui_chart",
+        "z": "5751c0a7.58f7f",
+        "name": "",
+        "group": "54b74482.dc89dc",
+        "order": 6,
+        "width": 12,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    }
+]

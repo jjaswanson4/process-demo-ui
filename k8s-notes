@@ -1,0 +1,7 @@
+docker build -t tbiernat/process-demo-ui .
+docker push tbiernat/process-demo-ui
+kubectl apply -f process-demo-ui-deployment.yaml
+kubectl expose deployment process-demo-ui-deployment --port=1880 --type=NodePort --name=process-demo-ui
+kubectl apply -f process-demo-ui-ingress.yaml 
+
+

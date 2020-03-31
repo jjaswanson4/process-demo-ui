@@ -1,0 +1,22 @@
+{
+  "name": "process-demo-ui",
+  "version": "1.0.0",
+  "description": "Process automation demo UI",
+  "author": "biernat@ieee.org",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimBiernat/process-demo-ui.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "main": "node_modules/node-red/red/red.js",
+  "dependencies": {
+    "node-red": "^1.0.4",
+    "node-red-dashboard": "^2.19.4"
+  },
+  "scripts": {
+    "start": "node-red /data/flows.json"
+  }
+}
