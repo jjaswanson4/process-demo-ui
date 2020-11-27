@@ -13,8 +13,8 @@
   },
   "main": "node_modules/node-red/red/red.js",
   "dependencies": {
-    "node-red": "^1.0.4",
-    "node-red-dashboard": "^2.19.4"
+    "node-red": "^1.2.6",
+    "node-red-dashboard": "^2.24.1"
   },
   "scripts": {
     "start": "node-red /data/flows.json"
