@@ -1,19 +1,10 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: process-demo-ui-ingress
-  annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
-  rules:
-    - host: ui.<uuid>.<region>.aksapp.io
-      http:
-        paths:
-          - backend: # How the ingress will handle the requests
-              serviceName: process-demo-ui  # Which service the request will be forwarded to
-              servicePort: http # Which port in that service
-            path: / # Which path is this rule referring to
-  backend:
-    serviceName: process-demo-ui
-    servicePort: 1880
-
+  defaultBackend:
+    service:
+      name: process-demo-ui
+      port:
+        number: 1880

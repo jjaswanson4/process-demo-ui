@@ -11,7 +11,9 @@ docker push tbiernat/process-demo-ui
 kubectl apply -f process-demo-ui-deployment.yaml
 kubectl expose deployment process-demo-ui-deployment --port=1880 --type=NodePort --name=process-demo-ui
 kubectl apply -f process-demo-ui-ingress.yaml 
-find service port: kubectl get svc -A
+
+find service port: 
+kubectl get svc -A
   process-demo-ui             NodePort       10.43.232.237   <none>          1880:32220/TCP 
 connect to svc
   http://fitlet2-2:32220/ui
