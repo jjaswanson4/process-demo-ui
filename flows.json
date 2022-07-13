@@ -10,7 +10,7 @@
         "id": "337a603d.6529b",
         "type": "mqtt-broker",
         "name": "mqtt",
-        "broker": "mqtt",
+        "broker": "localhost",
         "port": "1883",
         "clientid": "",
         "usetls": false,
